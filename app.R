@@ -47,6 +47,7 @@ server <- function(input, output, session) {
   currentComparisonIndex <- reactiveVal(1)
   skippedCount <- reactiveVal(0) # To keep track of how many times skip has been clicked
   items <- reactiveVal()
+  scores <- reactiveVal()
 
 
   observeEvent(input$sample, {
@@ -164,7 +165,8 @@ server <- function(input, output, session) {
     # include counts that didnt win
     ranking_scores <- ranking_scores %>%
       bind_rows(tibble(item = setdiff(items(), ranking_scores$item), score = 0, N = 0))
-    reactable(ranking_scores, columns = list(
+    scores(ranking_scores)
+    reactable(scores(), columns = list(
       item = colDef(name = "Name"),
       score = colDef(name = "Score")
     ))
@@ -184,16 +186,8 @@ server <- function(input, output, session) {
       glue::glue("{input$topic}_Results_{Sys.Date()}.csv")
     },
     content = function(file) {
-      # Prepare the results data frame for download
-      ranking_scores <- results() %>%
-        count(winner) %>%
-        mutate(score = round(N / length(items()), 2) * 100 ) %>%
-        arrange(desc(score))
-      # include counts that didnt win
-      ranking_scores <- ranking_scores %>%
-        bind_rows(tibble(item = setdiff(items(), ranking_scores$item), score = 0, N = 0))
       # Write the results to the specified file path
-      readr::write_csv(ranking_scores, file)
+      readr::write_csv(scores(), file)
     }
   )
 }
