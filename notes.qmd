@@ -1,0 +1,46 @@
+---
+title: "notes"
+format: html
+editor: visual
+---
+
+## Pairwise ranking
+
+-   **Pairwise Ranking** is the process of ranking a set of options using head-to-head pairs to judge which one is the most preferred overall. It's also known as pairwise comparison.
+
+-   It basically breaks down a set of options into a series of head to head votes. The process produces a list of items ranked from by score as determined by votes.
+
+## Implementations
+
+-   Each respondent can be voting on each unique pair combination OR each respondent can be given a sample of pairs to complete which can be later used to calculate the groups overall combined preferences.
+
+## Total unique combinations
+
+-   There are $\frac{n(n-1)}{2}$ unique combinations or pairs, where $n$ is the number of total options or unique items.
+
+-   The base r `combn()` function is useful to get all the unique pairwise where order doesn't matter.
+
+```{r}
+library(dplyr)
+vec <- c("apple", "grapes", "banana")
+pairs <- combn(vec, 2)
+pairs_tbl <- tibble(item1 = pairs[1, ], item2 = pairs[2, ])
+  
+unique_combo_ct <- \(n) n*(n-1) / 2
+
+all.equal(unique_combo_ct(3), nrow(pairs_tbl))
+```
+
+## Performance metrics
+
+-   Win rate
+
+-   Probabilistic
+
+-   Manual
+
+## Useful Links
+
+-   [Pairwise Ranking (Tools, Examples, Methods)](https://www.opinionx.co/research-method-guides/best-free-pairwise-ranking-tools)
+
+-   [Pairwise Ranking Web App in React JS](https://github.com/iamovrhere/pairwise-ranking-app)
