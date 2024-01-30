@@ -1,4 +1,4 @@
-Honey Crisp; https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Honeycrisp-Apple.jpg/440px-Honeycrisp-Apple.jpg
-Tangerine; https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0G2Lf-N-kusr5rTrwr6liA5fsgBdoqPEHYAF29glGjNtpq8sRHpSGLdasRruRx55iAKQ&usqp=CAU
-Mandarin Orange; https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Citrus_reticulata_April_2013_Nordbaden.JPG/440px-Citrus_reticulata_April_2013_Nordbaden.JPG
+Honey Crisp: https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Honeycrisp-Apple.jpg/440px-Honeycrisp-Apple.jpg
+Tangerine: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0G2Lf-N-kusr5rTrwr6liA5fsgBdoqPEHYAF29glGjNtpq8sRHpSGLdasRruRx55iAKQ&usqp=CAU
+Mandarin Orange: https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Citrus_reticulata_April_2013_Nordbaden.JPG/440px-Citrus_reticulata_April_2013_Nordbaden.JPG
 

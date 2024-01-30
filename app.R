@@ -24,7 +24,7 @@ sample_items <- readr::read_lines("sample_items3.txt") %>%
 
 # Helper function to parse items and URLs from the input
 parseItemsAndUrls <- function(inputString) {
-  splitInput <- strsplit(inputString, ";\\s+")[[1]]
+  splitInput <- strsplit(inputString, "[;:]\\s+")[[1]]
   itemsAndUrls <- tibble(
     item = splitInput[seq(1, length(splitInput), 2)],
     url = splitInput[seq(2, length(splitInput), 2)]
