@@ -19,8 +19,18 @@ unique_combo_ct <- \(n) n*(n-1) / 2
 # unique_combo_ct(3)
 
 # Read sample items
-sample_items <- readr::read_lines("sample_items2.txt") %>%
+sample_items <- readr::read_lines("sample_items3.txt") %>%
   paste0(collapse = ", ")
+
+# Helper function to parse items and URLs from the input
+parseItemsAndUrls <- function(inputString) {
+  splitInput <- strsplit(inputString, ";\\s+")[[1]]
+  itemsAndUrls <- tibble(
+    item = splitInput[seq(1, length(splitInput), 2)],
+    url = splitInput[seq(2, length(splitInput), 2)]
+  )
+  return(itemsAndUrls)
+}
 
 # Define UI
 ui <- fluidPage(
@@ -79,8 +89,9 @@ server <- function(input, output, session) {
     total <- nrow(cmp)
     if (index > total) return()
 
-    item1 <- cmp$item1[index]
-    item2 <- cmp$item2[index]
+    # Parse item names and URLs
+    item1Info <- parseItemsAndUrls(cmp$item1[index])
+    item2Info <- parseItemsAndUrls(cmp$item2[index])
 
     modalUI <- modalDialog(
       title = "Pairwise Comparison",
@@ -88,7 +99,8 @@ server <- function(input, output, session) {
       fluidRow(
         column(5, offset = 1,
                div(style = "text-align: center;",
-                   h3(item1),
+                   if(nchar(item1Info[,2]) > 0) img(src = item1Info[,2], height = "100px"),
+                   h3(item1Info[,1]),
                    actionButton("choose1", label = "Select", class = "btn-primary")
                )
         ),
@@ -99,7 +111,8 @@ server <- function(input, output, session) {
         ),
         column(5,
                div(style = "text-align: center;",
-                   h3(item2),
+                   if(nchar(item2Info[,2]) > 0) img(src = item2Info[,2], height = "100px"),
+                   h3(item2Info[,1]),
                    actionButton("choose2", label = "Select", class = "btn-primary")
                )
         )
